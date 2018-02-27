@@ -4,6 +4,6 @@
         <file>image/ico.png</file>
         <file>image/max.png</file>
         <file>image/min.png</file>
-        <file>image/nomax.png</file>
+        <file>image/normal.png</file>
     </qresource>
 </RCC>

@@ -2,6 +2,7 @@
 #include "ui_widget.h"
 #include "dtitlewidget.h"
 #include <QVBoxLayout>
+#include <QPainter>
 #include <QDebug>
 
 Widget::Widget(QWidget *parent) :
@@ -21,8 +22,16 @@ Widget::~Widget()
 
 void Widget::paintEvent(QPaintEvent *event)
 {
-    Q_UNUSED(event);
     m_titleWidget->resize(this->width(), 35);
+
+    QPainter painter(this);
+    QPainterPath backPath;
+    backPath.setFillRule(Qt::WindingFill);
+    backPath.addRoundedRect(QRectF(0, 0, this->width(), this->height()), 5, 5);
+    painter.setRenderHint(QPainter::Antialiasing, true);
+    painter.fillPath(backPath, QBrush(QColor(220, 220, 220)));
+
+    QWidget::paintEvent(event);
 }
 
 void Widget::onCloseWindow()
